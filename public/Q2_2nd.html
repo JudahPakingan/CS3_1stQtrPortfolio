@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Overworld</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    nav a {
+      text-decoration: none;
+      background-color: #3c8527;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #58c246;
+      transform: scale(1.05);
+    }
+
+    .banner {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 0;
+    }
+
+    .banner img {
+      width: 300px;
+    }
+
+    section {
+      background-color: rgba(0, 0, 0, 0.75);
+      border-radius: 10px;
+      margin: 40px auto;
+      width: 85%;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #4caf50;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .box {
+      background-color: rgba(34, 34, 34, 0.9);
+      border: 2px solid #3c8527;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      border-color: #58c246;
+    }
+
+    .box h3 {
+      color: #58c246;
+      margin-bottom: 10px;
+    }
+
+    .box p, .box ul {
+      color: #e3e3e3;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a>Home</a>
+      <a href="add your Nether link here">Nether</a>
+      <a href="add your End link here ">The End</a>
+    </nav>
+
+    <div class="banner">
+      <img src="https://res.cloudinary.com/zenbusiness/q_auto,w_1050/v1670445040/logaster/logaster-2020-06-image14-3.png" alt="Minecraft Logo" />
+      <h1>Minecraft: Exploring the Overworld</h1>
+    </div>
+  </header>
+
+  <section>
+    <h2>What is the Overworld?</h2>
+    <p>
+      The Overworld is the first dimension every player experiences in Minecraft. 
+      It’s a large, natural world with mountains, oceans, forests, and deserts. 
+      Players can explore, gather resources, and build homes before preparing to travel to the Nether or the End.
+    </p>
+  </section>
+
+  <section>
+    <h2>Explore the Overworld</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Biomes</h3>
+        <p>The Overworld includes many different biomes, each with its own resources and landscape:</p>
+        <ul>
+          <li>Plains – great for building and farming</li>
+          <li>Desert – find temples and cacti</li>
+          <li>Jungle – home to melons and bamboo</li>
+          <li>Taiga – tall spruce trees and wolves</li>
+          <li>Swamp – clay, vines, and slime at night</li>
+          <li>Ocean – coral reefs and shipwrecks</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>What to Do</h3>
+        <p>Players can gather materials, explore caves, and develop their survival skills:</p>
+        <ul>
+          <li>Build a base and craft tools</li>
+          <li>Explore caves to find valuable ores</li>
+          <li>Trade with villagers for resources</li>
+          <li>Grow crops and raise animals</li>
+          <li>Prepare gear for the Nether or the End</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Structures</h3>
+        <p>The Overworld contains a range of naturally generated structures filled with treasure and challenges.</p>
+        <ul>
+          <li>Villages – trade and farm with villagers</li>
+          <li>Pillager Outposts – fight raiders for loot</li>
+          <li>Mineshafts – hidden underground tunnels</li>
+          <li>Temples – treasure guarded by traps</li>
+          <li>Shipwrecks – valuable loot under the sea</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Materials to Mine</h3>
+        <p>Mining is essential for progress in Minecraft. Each layer of the world offers new materials:</p>
+        <ul>
+          <li>Coal – for fuel and torches</li>
+          <li>Iron – for armor and tools</li>
+          <li>Gold – for crafting and trading</li>
+          <li>Diamond – for powerful weapons and gear</li>
+          <li>Emerald – currency for villager trades</li>
+        </ul>
+        <p>Bring enough food, torches, and weapons before exploring deep caves.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Minecraft Overworld Project | Created by Judah Ezekiel P. Pakingan
+  </footer>
+</body>
+</html>
