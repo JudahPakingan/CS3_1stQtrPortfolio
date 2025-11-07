@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Events Bonus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding-top: 40px;
+    }
+
+    h1 {
+      color: rgb(38, 75, 187);
+    }
+
+    #btn {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: rgb(15, 31, 79);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #btn:hover {
+      background-color: darkblue;
+    }
+
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: rgb(170, 94, 81);
+      margin: 20px auto;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    #message {
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    #target {
+      font-size: 2rem;
+      color: royalblue;
+    }
+
+    #result {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    #score, #timer {
+      font-size: 1.2rem;
+      margin: 5px;
+    }
+
+    hr {
+      margin: 40px 0;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Events Lab</h1>
+
+  <h2>Task 4 — Event Responder</h2>
+  <button id="btn">Click Me!</button>
+  <div id="box"></div>
+  <p id="message">Press any key...</p>
+
+  <hr>
+
+  <h2>Reaction Game</h2>
+  <h3 id="target">Press the letter: A</h3>
+  <p id="result"></p>
+  <p id="score">Score: 0</p>
+  <p id="timer">Time left: 30s</p>
+
+  <script>
+    const btn = document.getElementById("btn");
+    const box = document.getElementById("box");
+    const message = document.getElementById("message");
+
+    btn.addEventListener("click", () => {
+      btn.textContent = "You clicked me!";
+    });
+
+    box.addEventListener("mouseover", () => {
+      box.style.transform = "rotate(45deg)";
+      box.style.backgroundColor = "lime";
+    });
+
+    box.addEventListener("mouseout", () => {
+      box.style.transform = "rotate(0deg)";
+      box.style.backgroundColor = "tomato";
+    });
+
+    document.body.addEventListener("keypress", (event) => {
+      message.textContent = `You pressed: ${event.key}`;
+    });
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const target = document.getElementById("target");
+    const result = document.getElementById("result");
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
+
+    let score = 0;
+    let timeLeft = 30;
+    let currentLetter = getRandomLetter();
+    updateTarget();
+
+    document.body.addEventListener("keypress", (event) => {
+      const pressed = event.key.toUpperCase();
+
+      if (timeLeft > 0) {
+        if (pressed === currentLetter) {
+          score++;
+          result.textContent = "Correct!";
+          result.style.color = "green";
+        } else {
+          result.textContent = "Try again!";
+          result.style.color = "red";
+        }
+
+        scoreDisplay.textContent = `Score: ${score}`;
+        currentLetter = getRandomLetter();
+        updateTarget();
+      }
+    });
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerDisplay.textContent = `Time left: ${timeLeft}s`;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        target.textContent = "Time’s up!";
+        result.textContent = `Final Score: ${score}`;
+      }
+    }, 1000);
+
+    function getRandomLetter() {
+      return letters[Math.floor(Math.random() * letters.length)];
+    }
+
+    function updateTarget() {
+      target.textContent = `Press the letter: ${currentLetter}`;
+    }
+  </script>
+</body>
+</html>
