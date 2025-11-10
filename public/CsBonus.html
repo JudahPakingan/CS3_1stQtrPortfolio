@@ -2,51 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JavaScript Events Bonus</title>
+  <title>Reaction Game</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #f4f4f4;
-      padding-top: 40px;
+      background-color: #d7bebe;
+      padding-top: 80px;
     }
 
     h1 {
-      color: rgb(38, 75, 187);
-    }
-
-    #btn {
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      background-color: rgb(15, 31, 79);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #btn:hover {
-      background-color: darkblue;
-    }
-
-    #box {
-      width: 100px;
-      height: 100px;
-      background-color: rgb(170, 94, 81);
-      margin: 20px auto;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    #message {
-      font-size: 1.3rem;
-      color: #333;
+      color: #9b4c4c;
     }
 
     #target {
       font-size: 2rem;
-      color: royalblue;
+      color: rgb(139, 82, 82);
     }
 
     #result {
@@ -58,52 +29,16 @@
       font-size: 1.2rem;
       margin: 5px;
     }
-
-    hr {
-      margin: 40px 0;
-      border: 1px solid #ccc;
-    }
   </style>
 </head>
 <body>
-  <h1>JavaScript Events Lab</h1>
-
-  <h2>Task 4 — Event Responder</h2>
-  <button id="btn">Click Me!</button>
-  <div id="box"></div>
-  <p id="message">Press any key...</p>
-
-  <hr>
-
-  <h2>Reaction Game</h2>
-  <h3 id="target">Press the letter: A</h3>
+  <h1>Reaction Game</h1>
+  <h2 id="target">Press any key to start!</h2>
   <p id="result"></p>
   <p id="score">Score: 0</p>
   <p id="timer">Time left: 30s</p>
 
   <script>
-    const btn = document.getElementById("btn");
-    const box = document.getElementById("box");
-    const message = document.getElementById("message");
-
-    btn.addEventListener("click", () => {
-      btn.textContent = "You clicked me!";
-    });
-
-    box.addEventListener("mouseover", () => {
-      box.style.transform = "rotate(45deg)";
-      box.style.backgroundColor = "lime";
-    });
-
-    box.addEventListener("mouseout", () => {
-      box.style.transform = "rotate(0deg)";
-      box.style.backgroundColor = "tomato";
-    });
-
-    document.body.addEventListener("keypress", (event) => {
-      message.textContent = `You pressed: ${event.key}`;
-    });
-
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const target = document.getElementById("target");
     const result = document.getElementById("result");
@@ -112,11 +47,29 @@
 
     let score = 0;
     let timeLeft = 30;
-    let currentLetter = getRandomLetter();
-    updateTarget();
+    let currentLetter = "";
+    let countdown;
+    let gameStarted = false;
+
+    function getRandomLetter() {
+      return letters[Math.floor(Math.random() * letters.length)];
+    }
+
+    function updateTarget() {
+      target.textContent = `Press the letter: ${currentLetter}`;
+    }
 
     document.body.addEventListener("keypress", (event) => {
       const pressed = event.key.toUpperCase();
+
+      // Start the game on the first keypress
+      if (!gameStarted) {
+        gameStarted = true;
+        currentLetter = getRandomLetter();
+        updateTarget();
+        startTimer();
+        return;
+      }
 
       if (timeLeft > 0) {
         if (pressed === currentLetter) {
@@ -134,23 +87,17 @@
       }
     });
 
-    const countdown = setInterval(() => {
-      timeLeft--;
-      timerDisplay.textContent = `Time left: ${timeLeft}s`;
+    function startTimer() {
+      countdown = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = `Time left: ${timeLeft}s`;
 
-      if (timeLeft <= 0) {
-        clearInterval(countdown);
-        target.textContent = "Time’s up!";
-        result.textContent = `Final Score: ${score}`;
-      }
-    }, 1000);
-
-    function getRandomLetter() {
-      return letters[Math.floor(Math.random() * letters.length)];
-    }
-
-    function updateTarget() {
-      target.textContent = `Press the letter: ${currentLetter}`;
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          target.textContent = "Time’s up!";
+          result.textContent = `Final Score: ${score}`;
+        }
+      }, 1000);
     }
   </script>
 </body>
