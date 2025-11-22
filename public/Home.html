@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Overworld</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .dark-card {
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    /* Full card hover effect */
+    .dark-card:hover {
+      filter: brightness(1.15);
+      transform: translateY(-3px);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      padding: 18px 35px;
+      color: #d7ffb8;
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 14px;
+      transition: 0.3s;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      filter: brightness(1.3);
+      transform: translateY(-3px);
+    }
+
+    .banner {
+      text-align: center;
+      margin: 25px auto;
+      width: 80%;
+    }
+
+    .banner img {
+      width: 300px;
+      transition: 0.3s;
+    }
+
+    .banner img:hover {
+      filter: brightness(1.2);
+      transform: translateY(-3px);
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 30px auto;
+      gap: 30px;
+    }
+
+    .left-info {
+      width: 60%;
+      font-size: 22px;
+      line-height: 1.6;
+      font-weight: bold;
+      color: white;
+    }
+
+    .right-info {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .video-box {
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      text-align: center;
+      font-size: 16px;
+      padding: 25px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 14px;
+      transition: 0.3s;
+    }
+
+    .video-box:hover {
+      filter: brightness(1.25);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 25px;
+      margin-top: 40px;
+      color: white;
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      font-size: 16px;
+    }
+
+    footer div {
+      transition: 0.3s;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    footer div:hover {
+      filter: brightness(1.25);
+      transform: translateY(-3px);
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="add link here">HOME</a>
+    <a href="add link here">SURVIVAL</a>
+    <a href="add link here">BOSSES</a>
+    <a href="add link here">DIMENSIONS</a>
+    <a href="add link here">MECHANICS</a>
+  </nav>
+
+  <div class="banner dark-card">
+    <img src="https://res.cloudinary.com/zenbusiness/q_auto,w_1050/v1670445040/logaster/logaster-2020-06-image14-3.png">
+    <h1>Surviveblocks: Surviving Minecraft</h1>
+  </div>
+
+  <div class="content-wrapper">
+
+    <div class="left-info dark-card">
+      SurviveBlocks is a beginner-friendly website that helps players learn how to survive, build, and explore in Minecraft. It covers crafting, mining, farming, boss fights, and pro mechanics. The goal is to help players go from their first night to beating the Ender Dragon with clear, simple guides and visuals.
+    </div>
+
+    <div class="right-info">
+      <div class="video-box dark-card">
+        https://www.youtube.com/watch?v=-1Sy6iz43vg
+      </div>
+
+      <div class="video-box dark-card">
+        https://www.youtube.com/watch?v=vcRoRl-CQys
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="dark-card">
+    <div>CONTACT INFO</div>
+    <div>COPYRIGHT (C) RJ</div>
+    <div>SOURCES</div>
+  </footer>
+
+</body>
+</html>
