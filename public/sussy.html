@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/V67stJQf/button.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SurviveBlocks - Mechanics</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e')
+        no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .dark-card {
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .dark-card:hover {
+      filter: brightness(1.15);
+      transform: translateY(-3px);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 20px 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      padding: 18px 35px;
+      color: #d7ffb8;
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 14px;
+      transition: 0.3s;
+      font-size: 18px;
+    }
+
+    nav a.active {
+      border: 2px solid white;
+      color: yellow;
+    }
+
+    nav a:hover {
+      filter: brightness(1.3);
+      transform: translateY(-3px);
+    }
+
+    .banner {
+      text-align: center;
+      margin: 25px auto;
+      width: 80%;
+    }
+
+    .banner img {
+      width: 300px;
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: 30px auto;
+      gap: 30px;
+    }
+
+    .left-info {
+      width: 60%;
+      font-size: 22px;
+      line-height: 1.6;
+      font-weight: bold;
+    }
+
+    .right-info {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .video-box {
+      padding: 20px;
+      border-radius: 14px;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 25px;
+      margin-top: 40px;
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      font-size: 16px;
+    }
+
+    footer div {
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    footer div:hover {
+      filter: brightness(1.25);
+      transform: translateY(-3px);
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    .contact-wrapper,
+    .source-wrapper {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .contact-popup,
+    .source-popup {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      left: -20px;
+      width: 320px;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid white;
+      border-radius: 14px;
+      font-size: 18px;
+      z-index: 9999;
+    }
+
+    .contact-wrapper:hover .contact-popup,
+    .source-wrapper:hover .source-popup {
+      display: block;
+    }
+
+    #bgBtn img {
+      transition: 0.25s ease;
+    }
+
+    #bgBtn:hover img,
+    #bgBtn:active img {
+      filter: drop-shadow(0 0 10px white) brightness(1.2);
+    }
+  </style>
+</head>
+
+<body>
+
+<button id="bgBtn"
+  style="position: fixed; top: 15px; left: 15px; z-index: 9999;
+         padding: 0; border: none; background: none; cursor: pointer;">
+  <img src="https://i.postimg.cc/V67stJQf/button.png"
+       style="width: 100px; image-rendering: pixelated;">
+</button>
+
+<nav>
+  <a href="home.html">HOME</a>
+  <a href="survival.html">SURVIVAL</a>
+  <a href="bosses.html">BOSSES</a>
+  <a href="dimensions.html">DIMENSIONS</a>
+  <a href="mechanics.html" class="active">MECHANICS</a>
+</nav>
+
+<div class="banner dark-card">
+  <img src="https://res.cloudinary.com/zenbusiness/q_auto,w_1050/v1670445040/logaster/logaster-2020-06-image14-3.png">
+  <h1>SurviveBlocks: Mechanics</h1>
+</div>
+
+<div class="content-wrapper">
+
+  <div class="left-info dark-card">
+
+<h2>Movement</h2>
+  <p>Movement in Minecraft is simple, but it controls almost everything you do. You move with WASD, jump with Space, and sprint by holding the sprint key. Sprinting makes you faster but uses up hunger quicker, so you need to watch your food while traveling. Swimming changes your movement style, allowing you to glide through water, while crawling works in one-block tall spaces. Knowing how your movement changes in different terrains helps you survive better, especially when escaping mobs or climbing mountains.</p>
+
+  <h2>Camera and Perspective</h2>
+  <p>You can switch between first-person, third-person back, and third-person front views. First-person is best for mining and combat, while third-person helps you see your surroundings and be aware of mobs behind you. Managing your camera angle well can make exploring caves and fighting bosses much easier.</p>
+
+  <h2>Combat Mechanics</h2>
+  <p>Combat relies on timing and positioning. When you attack, your weapon has a cooldown that affects damage, so hitting at the right moment makes your attacks stronger. You can block with a shield to reduce damage from melee hits, arrows, and some projectiles. Critical hits occur when you strike while falling, adding more damage. Minecraft combat rewards players who stay mobile, time their hits correctly, and use the shield wisely.</p>
+
+  <h2>Player Health and Hunger</h2>
+  <p>Your health is shown by hearts, and hunger is shown by drumsticks. Hunger affects how quickly you heal and whether you can sprint. If your hunger is full, you heal automatically, but if it drops too low, you cannot sprint and will eventually take damage on harder difficulties. Keeping food with you at all times is one of the most important survival habits.</p>
+
+  <h2>Armor and Protection</h2>
+  <p>Armor reduces incoming damage based on the material and enchantments. Diamond and Netherite provide the best protection, while enchantments like Protection, Fire Protection, and Projectile Protection help against different threats. Armor durability is essential because broken armor leaves you exposed, so repairing or replacing armor is part of being ready for tougher fights.</p>
+
+  <h2>Mining and Block Interaction</h2>
+  <p>Every block has a breaking speed depending on the tool you use. Using the correct tool keeps mining fast, while enchantments like Efficiency help even more. Some blocks only drop items with specific tools, like diamonds requiring at least an iron pickaxe. Mining also impacts your positioning because digging straight down or straight up can be dangerous. Knowing safe mining habits is key.</p>
+
+  <h2>Crafting and Inventory Management</h2>
+  <p>Your inventory affects how much you can carry, and knowing what to prioritize helps you on long adventures. Crafting lets you turn materials into weapons, tools, armor, and building blocks. A crafting table expands the number of things you can create, and the furnace allows for smelting. Good players organize their inventory so they can quickly switch between tools, food, and weapons during fights.</p>
+
+  <h2>Building and Placement</h2>
+  <p>Blocks are always placed on the side you are looking at. Because of this, building requires some precision and sometimes shifting to avoid falling. You can scaffold upward by jumping and placing blocks beneath you, and you can bridge sideways while crouching to prevent slipping off. These small mechanics are useful in exploring caves, building bases, or crossing gaps safely.</p>
+
+  <h2>Redstone and Automation</h2>
+  <p>Redstone functions like electricity in Minecraft. It sends signals that power machines such as doors, traps, farms, and automated systems. Levers, buttons, and pressure plates act as triggers, while repeaters and comparators change how signals travel. Even simple redstone can make survival easier because you can automate tasks like crop harvesting or item sorting.</p>
+
+  <h2>Status Effects</h2>
+  <p>Status effects are temporary boosts or weaknesses. Positive effects like Strength, Speed, or Regeneration help in combat, while negative ones like Poison, Wither, or Mining Fatigue can create dangerous situations. Potions, beacons, mobs, and biomes can apply these effects. Learning what each one does helps you react quickly in fights and tougher areas like ocean monuments.</p>
+
+  <h2>Weather and Time Cycle</h2>
+  <p>Minecraft has a day and night cycle. Daytime is safer because hostile mobs burn or despawn, while nighttime brings more danger. Weather like rain lowers light levels and can spawn mobs earlier, while thunderstorms allow for lightning strikes. These mechanics influence when you should explore and when it's safer to stay in your base.</p>
+
+  <h2>Game Difficulty</h2>
+  <p>Difficulty affects how strong mobs are, how quickly you lose hunger, and whether certain effects can kill you. In Hard mode, mobs deal more damage, armor matters more, and hunger can drain you to death. Knowing the mechanics of each difficulty helps you prepare before starting a new world.</p>
+
+  <h2>Mob Behavior and AI</h2>
+  <p>Each mob behaves differently. Zombies swarm in groups and break doors on harder modes. Skeletons use distance and ranged attacks, while creepers move silently until they explode. Understanding mob behavior helps you create better strategies, like using shields against skeletons or maintaining distance from creepers.</p>
+
+  <h2>Dimensions</h2>
+  <p>Each dimension has mechanics that change how you play. The Overworld features normal survival gameplay with balanced resources. The Nether contains fire, lava, and aggressive mobs, with many blocks behaving differently. The End mostly has empty islands with Endermen and the Ender Dragon. Traveling between dimensions affects respawn rules, mob spawns, and what items you can gather.</p>
+
+  </div>
+
+  <div class="right-info">
+
+    <div class="video-box dark-card">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/rt5Z07ZqPWo?si=qfBMqwpcotjYlryb" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="video-box dark-card">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/ZbUZAhzXRKY?si=WINFBD6tXKMckov_" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="dark-card">
+
+  <div class="contact-wrapper">
+    CONTACT INFO
+    <div class="contact-popup">
+      <strong>Instagram:</strong> @REYJUDAH<br>
+      <strong>X:</strong> @REYJUDAH<br>
+      <strong>Facebook:</strong> REYJUDAH<br>
+      <strong>Phone:</strong> 0967 607 6767<br>
+      <strong>Email:</strong> REYJUDAH@gmail.com
+    </div>
+  </div>
+
+  <div>COPYRIGHT (C) RJ</div>
+
+  <div class="source-wrapper">
+    SOURCES
+    <div class="source-popup">
+      https://www.youtube.com/embed/rt5Z07ZqPWo?si=qfBMqwpcotjYlryb<br>
+     https://www.youtube.com/embed/ZbUZAhzXRKY?si=WINFBD6tXKMckov_
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  const originalBG =
+    "url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e')";
+  const newBG =
+    "url('https://cdn.modrinth.com/data/9YabX8Vy/images/10f9e3c98388fd91186239010e2dfaf61950f484.png')";
+
+  let toggled = false;
+  const btnImg = document.querySelector('#bgBtn img');
+
+  function updateGlow() {
+    btnImg.style.filter = toggled
+      ? 'drop-shadow(0 0 10px lime) brightness(1.1)'
+      : 'drop-shadow(0 0 10px red) brightness(1.1)';
+  }
+
+  updateGlow();
+
+  document.getElementById('bgBtn').addEventListener('click', () => {
+    toggled = !toggled;
+    document.body.style.background =
+      `${toggled ? newBG : originalBG} no-repeat center center fixed`;
+    document.body.style.backgroundSize = "cover";
+    updateGlow();
+  });
+</script>
+
+</body>
+</html>

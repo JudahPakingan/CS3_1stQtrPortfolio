@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        label {
+            display: block;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            background-color: #dddddd;
+        }
+
+        .invalid {
+            border: 2px solid red;
+        }
+    </style>
+
+    <script>
+        function confirmSubmit() {
+            return confirm("Do you want to submit the form?");
+        }
+
+        function confirmReset() {
+            return confirm("Do you want to reset the form?");
+        }
+
+        function checkEmpty(element) {
+            if (element.value === "") {
+                element.classList.add("invalid");
+            } else {
+                element.classList.remove("invalid");
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+<form method="post" action="submit" onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+
+    <fieldset>
+        <label>
+            Student ID:
+            <input type="number" required onblur="checkEmpty(this)">
+        </label>
+
+        <label>
+            Full Name:
+            <input type="text" required onblur="checkEmpty(this)">
+        </label>
+
+        <label>
+            Birthday:
+            <input type="date" required>
+        </label>
+
+        <label>
+            Email Address:
+            <input type="email" required onblur="checkEmpty(this)">
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <label>
+            Mobile Phone:
+            <input type="text" required onblur="checkEmpty(this)">
+        </label>
+
+        <label>
+            Grade Level:
+            <select required>
+                <option value="">Select</option>
+                <option value="g7">Grade Seven</option>
+                <option value="g8">Grade Eight</option>
+                <option value="g9">Grade Nine</option>
+            </select>
+        </label>
+
+        <label>
+            Intern / Extern:
+            <input type="radio" name="status" value="int" required> Intern
+        </label>
+
+        <label>
+            <input type="radio" name="status" value="ext"> Extern
+        </label>
+
+        <label>
+            Preferred Organization / Club:
+            <select required>
+                <option value="">Select</option>
+                <option value="ali">Alianti</option>
+                <option value="pal">Pallastro</option>
+                <option value="kis">Kislap</option>
+                <option value="bak">Bake</option>
+                <option value="inv">Invictus</option>
+            </select>
+        </label>
+
+        <label>
+            Why do you want to join?
+            <textarea required onblur="checkEmpty(this)"></textarea>
+        </label>
+    </fieldset>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/V67stJQf/button.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SurviveBlocks - Dimensions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      background: url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e')
+        no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    .dark-card {
+      background-color: rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .dark-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Theme Toggle Button */
+    #bgBtn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 9999;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    #bgBtn img {
+      width: 100px;
+      image-rendering: pixelated;
+      transition: 0.25s ease;
+    }
+
+    #bgBtn:hover img,
+    #bgBtn:active img {
+      filter: drop-shadow(0 0 10px white) brightness(1.2);
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 25px 0;
+      flex-wrap: wrap;
+      margin: 0 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-family: 'Press Start 2P', cursive, sans-serif;
+      padding: 18px 30px;
+      color: #d7ffb8;
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      border: 2px solid transparent;
+      text-align: center;
+      min-width: 150px;
+    }
+
+    nav a.active {
+      border: 2px solid #ffd700;
+      color: #ffd700;
+      background: linear-gradient(145deg, rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    }
+
+    nav a:hover:not(.active) {
+      transform: translateY(-3px) scale(1.05);
+      color: #fff;
+      border-color: #4CAF50;
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    /* Banner */
+    .banner {
+      text-align: center;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 1200px;
+      padding: 30px;
+    }
+
+    .banner img {
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .banner h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.5rem;
+      color: #4CAF50;
+      text-shadow: 3px 3px 0 #000;
+      letter-spacing: 2px;
+    }
+
+    /* Content Layout */
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1400px;
+      margin: 40px auto;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .left-info {
+      flex: 3;
+      min-width: 300px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .right-info {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Section Buttons */
+    .section-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .section-buttons button {
+      padding: 15px 25px;
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      min-width: 150px;
+    }
+
+    .section-buttons button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(145deg, #3498db, #2980b9);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    .section-buttons button.active {
+      background: linear-gradient(145deg, #e74c3c, #c0392b);
+      border-color: #fff;
+      box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+    }
+
+    /* Dimension Sections */
+    .dimension-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .dimension-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video Section */
+    .video-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Typography */
+    h2 {
+      font-family: 'Press Start 2P', cursive;
+      color: #3498db;
+      margin: 25px 0 15px;
+      font-size: 1.8rem;
+      text-shadow: 2px 2px 0 #000;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+    }
+
+    h3 {
+      font-family: 'Press Start 2P', cursive;
+      color: #2ecc71;
+      margin: 20px 0 10px;
+      font-size: 1.2rem;
+      padding-left: 10px;
+      border-left: 4px solid #2ecc71;
+    }
+
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+      padding: 0 10px;
+    }
+
+    strong {
+      color: #f1c40f;
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 25px;
+      margin-top: 50px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      letter-spacing: 1px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer div {
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    footer div:hover {
+      filter: brightness(1.25);
+      transform: translateY(-3px);
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    .contact-wrapper,
+    .source-wrapper {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .contact-popup,
+    .source-popup {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      left: -20px;
+      width: 320px;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid white;
+      border-radius: 14px;
+      font-size: 18px;
+      z-index: 9999;
+    }
+
+    .contact-wrapper:hover .contact-popup,
+    .source-wrapper:hover .source-popup {
+      display: block;
+    }
+
+    /* Login Box */
+    .login-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 11px;
+      z-index: 1000;
+      border: 2px solid #4CAF50;
+      min-width: 200px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #4CAF50;
+      border-radius: 5px;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(145deg, #4CAF50, #45a049);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 11px;
+      transition: all 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background: linear-gradient(145deg, #45a049, #4CAF50);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      
+      .left-info, .right-info {
+        width: 100%;
+      }
+      
+      nav a {
+        padding: 15px 20px;
+        font-size: 12px;
+        min-width: 130px;
+      }
+      
+      .banner h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        gap: 15px;
+      }
+      
+      nav a {
+        padding: 12px 15px;
+        font-size: 10px;
+        min-width: 110px;
+      }
+      
+      .banner h1 {
+        font-size: 1.5rem;
+      }
+      
+      .section-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .section-buttons button {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .login-box {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 300px;
+      }
+      
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<button id="bgBtn">
+  <img src="https://i.postimg.cc/V67stJQf/button.png">
+</button>
+
+<div class="login-box">
+  <div style="color: #4CAF50; margin-bottom: 15px; text-align: center;">USER LOGIN</div>
+  <input type="text" placeholder="Username" id="username">
+  <br><br>
+  <button onclick="login()">LOGIN</button>
+</div>
+
+<nav>
+  <a href="home.html">HOME</a>
+  <a href="survival.html">SURVIVAL</a>
+  <a href="bosses.html">BOSSES</a>
+  <a href="dimensions.html" class="active">DIMENSIONS</a>
+  <a href="mechanics.html">MECHANICS</a>
+</nav>
+
+<div class="banner dark-card">
+  <img src="https://res.cloudinary.com/zenbusiness/q_auto,w_1050/v1670445040/logaster/logaster-2020-06-image14-3.png">
+  <h1>SurviveBlocks: Dimensions</h1>
+</div>
+
+<div class="content-wrapper">
+
+  <div class="left-info dark-card">
+
+    <div class="section-buttons">
+      <button class="active" onclick="showSection('overworld')">OVERWORLD</button>
+      <button onclick="showSection('nether')">THE NETHER</button>
+      <button onclick="showSection('end')">THE END</button>
+    </div>
+
+    <!-- OVERWORLD -->
+    <div id="overworld" class="dimension-section active">
+      <h2>The Overworld</h2>
+
+      <h3>Temperate Biomes</h3>
+
+      <p><strong>Plains</strong> – Plains are flat and easy to build on, which is why many players choose them for their main base. Villages often spawn here, along with animals like cows, sheep, and horses. This makes plains one of the best biomes to start in.</p>
+
+      <p><strong>Forest</strong> – Forests are one of the most useful biomes early on. They provide plenty of wood, mostly oak and birch, and animals spawn frequently. This makes it easier to get food and basic materials on the first few days.</p>
+
+      <p><strong>Taiga</strong> – Taiga biomes have spruce trees and wolves. Some versions are snowy, but villages can still appear. Spruce wood is commonly used for darker builds and large structures.</p>
+
+      <h3>Warm Biomes</h3>
+
+      <p><strong>Desert</strong> – Deserts are made of sand and have very little vegetation. Desert villages and temples can generate here. Temples sometimes contain valuable loot, but they can be dangerous if you are not careful.</p>
+
+      <p><strong>Savanna</strong> – Savannas have acacia trees and wide open spaces. Villages spawn often, and the terrain usually has tall cliffs and plateaus, making it easier to spot structures from far away.</p>
+
+      <p><strong>Jungle</strong> – Jungles are dense and harder to move through. They contain vines, bamboo, melons, and cocoa beans. Jungle temples can generate here, and parrots can also be found.</p>
+
+      <h3>Cold and Mountain Biomes</h3>
+
+      <p><strong>Snowy Plains</strong> – Snowy plains are covered in snow and ice. There are fewer animals and plants, which can make surviving harder at the start. Snow and ice can still be useful for building or redstone.</p>
+
+      <p><strong>Snowy Taiga</strong> – This is a colder version of the taiga biome. Wolves still spawn here, and villages can appear, but gathering food can take more time.</p>
+
+      <p><strong>Mountain Biomes</strong> – Mountain biomes are tall and steep. Coal and iron are often visible on the surface, which makes early mining easier, but moving around can be risky.</p>
+
+      <h3>Ocean Biomes</h3>
+
+      <p><strong>Ocean</strong> – Oceans contain fish, drowned mobs, and shipwrecks. Shipwrecks usually have chests with food, iron, and maps.</p>
+
+      <p><strong>Warm Ocean</strong> – Warm oceans have coral reefs and tropical fish. These biomes are mostly decorative but are useful for collecting coral and sea-related items.</p>
+
+      <p><strong>Frozen Ocean</strong> – Frozen oceans have icebergs and frozen water. Travel is slower and more dangerous, especially with drowned mobs nearby.</p>
+
+      <h3>What You Can Find and Do in the Overworld</h3>
+
+      <p>The Overworld is where most of the game takes place. Players gather basic resources like wood, stone, iron, and diamonds. This is where you build your main base, explore caves, trade with villagers, and prepare equipment before going to other dimensions.</p>
+    </div>
+
+    <!-- NETHER -->
+    <div id="nether" class="dimension-section">
+      <h2>The Nether</h2>
+
+      <h3>Nether Biomes</h3>
+
+      <p><strong>Nether Wastes</strong> – This is the most common Nether biome. It has large lava lakes, nether quartz, and zombified piglins. It is usually the first biome players see when entering the Nether.</p>
+
+      <p><strong>Crimson Forest</strong> – Crimson forests are filled with piglins and hoglins. Hoglins can be used as a food source, and piglins can be bartered with gold for useful items.</p>
+
+      <p><strong>Warped Forest</strong> – Warped forests are safer compared to other Nether biomes. Endermen spawn often here, making it a good place to collect ender pearls.</p>
+
+      <p><strong>Soul Sand Valley</strong> – This biome slows down movement and spawns skeletons and ghasts frequently. It is dangerous and difficult to travel through.</p>
+
+      <p><strong>Basalt Deltas</strong> – Basalt deltas have uneven terrain and magma cubes. Moving around is harder, and falling into lava is common.</p>
+
+      <h3>What You Can Find and Do in the Nether</h3>
+
+      <p>The Nether contains materials that cannot be found in the Overworld, such as glowstone, nether wart, and ancient debris. Players search for Nether Fortresses to get blaze rods, which are needed for potion brewing and reaching the End. Ancient debris is used to create netherite gear.</p>
+    </div>
+
+    <!-- END -->
+    <div id="end" class="dimension-section">
+      <h2>The End</h2>
+
+      <h3>End Biomes</h3>
+
+      <p><strong>The End (Main Island)</strong> – This is where the Ender Dragon fight happens. The island is surrounded by obsidian pillars with End crystals on top.</p>
+
+      <p><strong>End Highlands</strong> – End Highlands are found on the outer islands. This is where End Cities generate.</p>
+
+      <p><strong>End Midlands</strong> – These areas connect the larger islands. There is not much to find here.</p>
+
+      <p><strong>End Barrens</strong> – Mostly empty islands with very little to explore.</p>
+
+      <p><strong>Small End Islands</strong> – Small floating islands with chorus plants. Chorus fruit can teleport the player when eaten.</p>
+
+      <h3>What You Can Find and Do in the End</h3>
+
+      <p>The End is where players fight the Ender Dragon. After defeating it, players explore End Cities to find Elytra and shulker boxes. These items make traveling and storage much easier later in the game.</p>
+    </div>
+
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="right-info">
+    <div class="video-box dark-card">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/Il3Z4PkNBPY?si=z8w5L-qcYzJu10pS" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="video-box dark-card">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/45WRafAxnfw?si=AmnRlkpVfROM86qA" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="dark-card">
+
+  <div class="contact-wrapper">
+    CONTACT INFO
+    <div class="contact-popup">
+      Instagram: @REYJUDAH<br>
+      X: @REYJUDAH<br>
+      Facebook: REYJUDAH<br>
+      Phone: 0967 607 6767<br>
+      Email: REYJUDAH@gmail.com
+    </div>
+  </div>
+
+  <div>COPYRIGHT (C) RJ</div>
+
+  <div class="source-wrapper">
+    SOURCES
+    <div class="source-popup">
+      https://www.youtube.com/embed/Il3Z4PkNBPY?si=z8w5L-qcYzJu10pS<br>
+      https://www.youtube.com/embed/45WRafAxnfw?si=AmnRlkpVfROM86qA
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.dimension-section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    
+    document.querySelectorAll('.section-buttons button').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.section-buttons button[onclick="showSection('${id}')"]`).classList.add('active');
+  }
+
+  function login() {
+    const username = document.getElementById('username').value;
+    if (username.trim()) {
+      alert('Welcome, ' + username + '!');
+    } else {
+      alert('Please enter a username.');
+    }
+  }
+
+  const originalBG =
+    "url('https://i.redd.it/we-transformed-the-end-into-an-overworld-village-in-v0-ef77hbv69ka91.png?width=1920&format=png&auto=webp&s=75f6fb56c30c69c9341b9c981a1e84c6ea087b1e')";
+  const newBG =
+    "url('https://cdn.modrinth.com/data/9YabX8Vy/images/10f9e3c98388fd91186239010e2dfaf61950f484.png')";
+
+  let toggled = false;
+  const btnImg = document.querySelector('#bgBtn img');
+
+  function updateGlow() {
+    btnImg.style.filter = toggled
+      ? 'drop-shadow(0 0 10px lime) brightness(1.1)'
+      : 'drop-shadow(0 0 10px red) brightness(1.1)';
+  }
+
+  updateGlow();
+
+  document.getElementById('bgBtn').addEventListener('click', () => {
+    toggled = !toggled;
+    document.body.style.background =
+      `${toggled ? newBG : originalBG} no-repeat center center fixed`;
+    document.body.style.backgroundSize = "cover";
+    updateGlow();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club Registrations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 150px;
+        }
+        
+        .stats {
+            padding: 8px 16px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .no-data h2 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .club-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        .Intern {
+            background-color: #2ecc71;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        .Extern {
+            background-color: #f39c12;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Club Registrations</h1>
+    
+    <div class="controls">
+        <div>
+            <a href="signUp.html" class="back-link">← Registration Form</a>
+            <span style="margin-left: 10px;">Filter by Club:</span>
+            <select id="clubFilter" onchange="filterSignUps()">
+                <option value="all">All Clubs</option>
+                <option value="Alianti">Alianti</option>
+                <option value="Pallastro">Pallastro</option>
+                <option value="Kislap">Kislap</option>
+                <option value="Bake Club">Bake Club</option>
+                <option value="Invictus">Invictus</option>
+                <option value="Himig Agham">Himig Agham</option>
+                <option value="Computron">Computron</option>
+            </select>
+        </div>
+        <div class="stats">
+            Total: <span id="totalSignups">0</span>
+        </div>
+    </div>
+    
+    <div id="signupsContainer">
+    </div>
+
+    <script>
+        let allSignups = JSON.parse(localStorage.getItem('clubSignups')) || [];
+        let filteredSignups = [...allSignups];
+        
+        function displaySignUps() {
+            const container = document.getElementById('signupsContainer');
+            const totalElement = document.getElementById('totalSignups');
+            
+            totalElement.textContent = filteredSignups.length;
+            
+            if (filteredSignups.length === 0) {
+                const selectedClub = document.getElementById('clubFilter').value;
+                
+                if (selectedClub === 'all') {
+                    container.innerHTML = `
+                        <div class="no-data">
+                            <h2>No Registrations</h2>
+                            <p>No students have registered yet.</p>
+                            <p><a href="signUp.html">Register now</a></p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div class="no-data">
+                            <h2>No Registrations for ${selectedClub}</h2>
+                            <p>No students have registered for this club.</p>
+                            <p><a href="signUp.html">Register for this club</a></p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+            
+            let tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Club</th>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Grade</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            filteredSignups.forEach(signup => {
+                tableHTML += `
+                    <tr>
+                        <td><span class="club-badge">${signup.club}</span></td>
+                        <td>${signup.id}</td>
+                        <td>${signup.fullName}</td>
+                        <td>${signup.gradeDisplay || signup.gradeLevel}</td>
+                        <td>${signup.email}</td>
+                        <td>${signup.mobile}</td>
+                        <td><span class="${signup.status}">${signup.status}</span></td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+        
+        function filterSignUps() {
+            const selectedClub = document.getElementById('clubFilter').value;
+            
+            if (selectedClub === 'all') {
+                filteredSignups = [...allSignups];
+            } else {
+                filteredSignups = allSignups.filter(signup => signup.club === selectedClub);
+            }
+            
+            displaySignUps();
+        }
+        
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'clubSignups') {
+                allSignups = JSON.parse(e.newValue) || [];
+                filterSignUps();
+            }
+        });
+        
+        displaySignUps();
+    </script>
+</body>
+</html>
