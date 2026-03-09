@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movie List</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background:#e9eef5;
+margin:0;
+padding:40px;
+display:flex;
+justify-content:center;
+}
+
+.container{
+width:360px;
+background:#ffffff;
+padding:20px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,0.12);
+}
+
+h2{
+text-align:center;
+margin-bottom:15px;
+color:#2c3e50;
+}
+
+label{
+font-size:14px;
+font-weight:bold;
+color:#34495e;
+}
+
+input,select{
+width:100%;
+padding:8px;
+margin-top:5px;
+margin-bottom:12px;
+border:1px solid #ccd6e0;
+border-radius:4px;
+background:#fdfdfd;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#3a7bd5;
+color:white;
+border:none;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#2f69bb;
+}
+
+.star{
+font-size:22px;
+cursor:pointer;
+opacity:0.4;
+}
+
+.star.active{
+opacity:1;
+color:#f5b301;
+}
+
+.movieItem{
+background:#f2f6fb;
+padding:8px;
+margin-top:8px;
+border-radius:5px;
+font-size:14px;
+color:#2c3e50;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add a Movie</h2>
+
+<label>Title</label>
+<input type="text" id="title">
+
+<label>Year</label>
+<input type="text" id="year">
+
+<label>Genre</label>
+<select id="genre">
+<option>Action</option>
+<option>Comedy</option>
+<option>Drama</option>
+<option>Horror</option>
+<option>Adventure</option>
+<option>Sport/Comedy</option>
+<option>Romance</option>
+</select>
+
+<label>Rating</label>
+
+<div id="stars">
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span> 
+</div>
+
+<br>
+
+<button onclick="addMovie()">Add Movie</button>
+
+<h3>Movie List</h3>
+
+<div id="movieList"></div>
+
+</div>
+
+<script>
+
+let rating = 0;
+let stars = document.querySelectorAll(".star");
+
+if(!localStorage.getItem("movies")){
+let movies = [
+{title:"A Minecraft Movie", year:"2025", genre:"Adventure", rating:5},
+{title:"GOAT", year:"2026", genre:"Sport/Comedy", rating:4}
+];
+localStorage.setItem("movies", JSON.stringify(movies));
+}
+
+stars.forEach(star=>{
+star.onclick = function(){
+
+rating = this.dataset.value;
+
+stars.forEach(s=>s.classList.remove("active"));
+
+for(let i=0;i<rating;i++){
+stars[i].classList.add("active");
+}
+
+};
+});
+
+function addMovie(){
+
+let title = document.getElementById("title").value;
+let year = document.getElementById("year").value;
+let genre = document.getElementById("genre").value;
+
+let movie = {
+title:title,
+year:year,
+genre:genre,
+rating:rating
+};
+
+let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+movies.push(movie);
+
+localStorage.setItem("movies", JSON.stringify(movies));
+
+displayMovies();
+
+document.getElementById("title").value="";
+document.getElementById("year").value="";
+rating=0;
+stars.forEach(s=>s.classList.remove("active"));
+}
+
+function displayMovies(){
+
+let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+let movieList = document.getElementById("movieList");
+movieList.innerHTML="";
+
+movies.forEach(m=>{
+
+let starText="";
+
+for(let i=0;i<m.rating;i++){
+starText += "⭐";
+}
+
+let item = document.createElement("div");
+item.className="movieItem";
+
+item.innerHTML = m.title + " (" + m.year + ") - " + m.genre + ", Rating: " + starText;
+
+movieList.appendChild(item);
+
+});
+
+}
+
+displayMovies();
+
+</script>
+
+</body>
+</html>
