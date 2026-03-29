@@ -56,18 +56,21 @@
 - Add in css ```position: relative; top: 20px; left: 20px;``` to .sidebar.
 
 - Guided Question: What changed compared to the default static positioning? Try to give different values to top and left or you can change it to bottom, right.
+- Answer: After changing the static positioning, the sidebar moved 20px from the top and from the left of its original location. 
 
 ### Step 2 (Fixed):
 
 - Add in css ```position: fixed; bottom: 0; width: 100%;``` to .footer.
 
 - Guided Question: What happens when you scroll the page? Why does the footer behave differently from position relative?
+- Answer: The footer stays stuck to the bottom of the page even when the page is big enough to scroll. It acts differently because relatice moves the element based on its starting position while the fixed removes it from the page and stickss it to the viewport.
 
 ### Step 3 (Absolute):
 
 - Add in css ```position: absolute; top: 66px; left: 200px;``` to .content.
 
 - Guided Question: What is the effect of position: absolute on an element? How is it different from fixed?
+- Answer: The effect of position:absolute is wheen it removes the elemenet from the flow of the page allowing other elements to move up and take its place. It's different from fixed because an absolute element stays at a specific spot on the page and will move away when you scroll.
 
 ### Step 4 : (Absolute)
 
@@ -87,6 +90,7 @@
 - Give .content a z-index: 1.
 
 - Guided Question: Why does the notice appear on top of the content? What happens if you swap the z‑index values?
+- Answer: The notice appears on top because it has a higher z-index. If the values are swapped, the main content box would be over the notice box.
 
 - Challenge: 
     * What changes that you have to do on the code that will position .notice box on the top right corner of the .content box? Please write the code on paper as well (both html and css on the part of .notice and .content).
@@ -96,9 +100,16 @@
 3. Please answer the following reflection questions (15 minutes)
 
     a. Could you summarize the differences between the CSS position values (static, relative, absolute, fixed)? 
+    - Static: Default flow, top/left properties don't work.
+    - Relative: Stays in flow but can be moved from its original spot.
+    - Absolute: Removed from flow, positioned relative to the nearest positioned ancestor.
+    - Fixed: Removed from flow; pinned to the browser window/screen.
 
     b. How does absolute positioning depend on its parent element?
+    - An absolute element looks for the nearest parent that has a position. If there isn't a parent positioned, it defaults to the body.
 
     c. How do you differentiate sticky from fixed (you can research on sticky)?
+    - Fixed is always stuck to the screen. Sticky acts like a normal element until you scroll to a specific point, at which it stickss and acts like a fixed element until the parent container ends.
 
     d. If you were designing a webpage for a school event, how might you use positioning to highlight important information? Please give concrete examples.
+    - I would usse fixed for a Register Now button so it's always visible to the user as they scroll through the details, I would use absolute and z-index to put a notification or status like "URGENT" or "OUT OF STOCK" on the objects.
