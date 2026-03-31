@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <meta name="author" content="Marlondale Dungca">
-  <meta name="description" content="Nlogonia error logs and corrections">
-  <meta name="keywords" content="error logs, debugging, HTML, CSS, JavaScript">
-  <title>Nlogonia Error Logs</title>
+  <meta name="author" content="Pakingan, Judah Ezekiel P.">
+  <meta name="description" content="testing and debugging">
+  <meta name="keywords" content="testing and debugging">
+  <title>CS3</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,22 +18,19 @@
       background-color: lightgray;
       color: black;
     }
-
     td, th {
       padding: 10px;
-      vertical-align: top;
     }
-
     table {
-      width: 95%;
+      width: 90%;
       margin: 0 auto;
     }
-
     caption {
       font-size: 2em;
       font-weight: bold;
       padding: 10px;
     }
+    
   </style>
 </head>
 
@@ -46,39 +43,34 @@
       <a href="errorlogs.html">Error Logs</a>
     </nav>
 
-    <h1>Marlondale Dungca / Section - Mar 2026</h1>
-    <h2>Error Logs and Corrections</h2>
-    <p class="intro">
-      This page shows the errors I found in the given CSS and JavaScript files.
-      I also included short explanations so the corrections are easier to understand while reviewing.
-    </p>
+    <h1> style = "padding: 30px">Pakigan, Judah Ezekiel P. / Na26 - Mar 2026</h1>
   </header>
 
   <section id="table">
     <table>
-      <caption>10 Errors Found in the Given Files</caption>
+      <caption> Error Logs - place errors found in the table below</caption>
       <tr class="rColor">
-        <th>Item #</th>
-        <th>Code Line # / Part</th>
-        <th>Error Found</th>
-        <th>Correction Done</th>
+        <th> item# </th> 
+        <th> code line#<br/>CSS or JS </th> 
+        <th> Description</th>
+        <th> Correction Done</th>
       </tr>
       <tr>
         <td>1</td>
         <td>CSS line 25 to 28</td>
-        <td>The navigation bar was not fixed, so it scrolled together with the page.</td>
-        <td>I added <b>position: fixed;</b> inside <b>nav</b>.</td>
+        <td>Nav bar wasn't fixed, so it scrolled together with the page.</td>
+        <td>Add <b>position: fixed;</b> inside <b>nav</b>.</td>
       </tr>
       <tr>
         <td>2</td>
         <td>CSS line 25 to 28</td>
-        <td>The fixed navigation also needs a starting position at the very top.</td>
+        <td>The fixed navigation needs a starting position at the very top.</td>
         <td>I added <b>top: 0;</b> in <b>nav</b>.</td>
       </tr>
       <tr>
         <td>3</td>
         <td>CSS line 25 to 28</td>
-        <td>The navigation should begin at the left edge of the page.</td>
+        <td>The navigation should begin at the left side of the page.</td>
         <td>I added <b>left: 0;</b> in <b>nav</b>.</td>
       </tr>
       <tr>
@@ -90,7 +82,7 @@
       <tr>
         <td>5</td>
         <td>CSS line 38</td>
-        <td>The selector was written as <b>nav a :hover</b> with an extra space, so the hover effect was wrong.</td>
+        <td>The selector was written as <b>nav a :hover</b> with two spaces, so the hover effect didnt work.</td>
         <td>I corrected it to <b>nav a:hover</b>.</td>
       </tr>
       <tr>
@@ -127,76 +119,21 @@
     <hr>
   </section>
 
-  <section>
-    <div class="noteBox">
-      <h3>How I understood the logic of the program</h3>
-      <p>
-        The division point is the center reference. The residence point is compared against it.
-        If the residence is on the same vertical or horizontal line as the division point, the answer is <b>divisa</b>.
-        Otherwise, the answer depends on whether the point is left or right, and above or below.
-      </p>
-      <p>
-        That means:
-        <b>NE</b> if x is greater and y is greater,
-        <b>NO</b> if x is smaller and y is greater,
-        <b>SE</b> if x is greater and y is smaller,
-        and <b>SO</b> if x is smaller and y is smaller.
-      </p>
-    </div>
 
-    <div class="noteBox">
-      <h3>Quick error comparison</h3>
-      <div class="codeBox">Before: nav a :hover
-After:  nav a:hover
-
-Before: display: block;
-After:  display: inline-block;
-
-Before: function plotPoint()
-After:  function plotPoint(x0, y0, x, y)
-
-Before: point.styleleft = ...
-After:  point.style.left = ...
-
-Before: point.stylebottom = ...
-After:  point.style.bottom = ...</div>
-    </div>
-
-    <div class="noteBox">
-      <h3>Guide for my students</h3>
-      <p>
-        1. When debugging CSS, first check selectors and spelling. A small space or typo can stop the style from working.
-      </p>
-      <p>
-        2. When moving elements using JavaScript, check whether the CSS position is correct. In this activity, the point needed <b>position: absolute</b>.
-      </p>
-      <p>
-        3. When a function is called with values from a button, make sure the function is ready to receive those values as parameters.
-      </p>
-      <p>
-        4. For this specific problem, try testing one sample for each case: NE, NO, SE, SO, and divisa.
-      </p>
-      <p>
-        5. If the output text is correct but the point is not moving, the problem is usually in the styling of the point or in the JavaScript style property names.
-      </p>
-    </div>
-
-    <div class="noteBox">
-      <h3>Extra notes for submission</h3>
-      <p>
-        Aside from the 10 CSS and JS errors, I also changed the HTML title and meta author to match the required submission details.
-        I also updated the heading name for the page.
-      </p>
-      <p>
-        The sprite icons will only appear if the sprite image file is inside the same folder as the HTML and CSS files.
-      </p>
-    </div>
-  </section>
-
+  
+    <!--- anchors for socmed site are done with image sprites -->
   <footer>
-    <a href="https://facebook.com"><div class="icon facebook"></div></a>
-    <a href="https://twitter.com"><div class="icon twitter"></div></a>
-    <a href="https://github.com"><div class="icon github"></div></a>
+    <a href="https://facebook.com"> 
+    <div class="icon facebook"></div>
+    </a>
+    <a href="https://twitter.com">
+    <div class="icon twitter"></div>
+    </a>
+    <a href="https://github.com">
+    <div class="icon github"></div>
+    </a>
   </footer>
+ 
 </body>
+
 </html>
